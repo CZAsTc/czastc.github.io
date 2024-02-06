@@ -15,11 +15,13 @@ body {
     font-size: 180px;
     margin: 0.4rem;
     padding-top: 10.8rem;
+    transition: all 0.8s ease;
 }
 .title:hover {
     transform: scale(1.1);
     transition: all 800ms;
 }
+
 @keyframes gradient {
     0% {
         background-position: 10% 50%;
@@ -47,4 +49,9 @@ body {
     color: white;
     font-size: 30px;
     padding-top: 8rem;
+    transition: all 0.8s ease;
+}
+.copyright:hover {
+    transform: scale(1.1);
+    transition: all 800ms;
 }
