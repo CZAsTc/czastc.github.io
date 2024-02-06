@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>我的网站首页</title>
+    <title>CZAsTc的网站首页</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
             color: #333;
         }
         header {
-            background: linear-gradient(to right, #F9A825, #FFC107);
+            background: radial-gradient(circle, #28D312, #28D3F9);
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -34,18 +34,19 @@
         }
         nav ul li a {
             text-decoration: underline;
+            color: #000;
         }
         main {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
-            border-radius: 5px;
+            border-radius: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         footer {
-            background: linear-gradient(to right, #F9A825, #FFC107);
-            color: #fff;
+            background: rgba(0, 0, 0, 0);
+            color: #000;
             text-align: center;
             padding: 20px 0;
             position: fixed;
@@ -61,26 +62,20 @@
     </style>
 </head>
 <body>
-
-    <!-- 网站的头部 -->
     <header>
-        <h1>欢迎来到我的网站</h1>
+        <h1>欢迎来到CZAsTc的网站</h1>
     </header>
-
-    <!-- 导航菜单 -->
     <nav>
         <ul>
-            <li><a href="index.html">首页</a></li>
-            <li><a href="./download/index.html">软件下载</a></li>
-            <li><a href="contact.html">联系方式</a></li>
+            <li><a href="index.html" style="text-decoration: none;">首页</a></li>
+            <li><a href="./downloads" style="text-decoration: none;">软件下载</a></li>
+            <li><a href="contact.html" style="text-decoration: none;">联系方式</a></li>
         </ul>
     </nav>
-
-    <!-- 主要内容区域 -->
     <main>
         <section>
             <h2>欢迎</h2>
-            <p>感谢访问我的网站。这里是我分享一些个人信息和项目的地方。</p>
+            <p>感谢访问我的网站。这里是我分享一些资源和软件的地方。</p>
         </section>
 
         <section>
@@ -88,11 +83,8 @@
             <p>在这里您可以找到最新版本的软件下载链接。希望对您有所帮助。</p>
         </section>
     </main>
-
-    <!-- 网站的尾部 -->
     <footer>
-        <p>版权所有 &copy; 2024 CZAsTc. All rights reserved.</p>
+        <p class="copyright" href=license.txt style="text-decoration: none;">版权所有 &copy; 2024 CZAsTc 保留所有权利</p>
     </footer>
-
 </body>
 </html>
