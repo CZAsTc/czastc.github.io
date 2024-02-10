@@ -1,60 +1,36 @@
-/*
-此源码是基于 XgpNwb 的二次修改
-Github：https://github.com/NianBroken/Firework_Simulator
-Gitee：https://gitee.com/nianbroken/Firework_Simulator
-*/
 "use strict";
 console.clear();
-
-//这是一个从简单项目开始的典型例子
-//并且雪球远远超出了它的预期大小。有点笨重
-//读取/处理这个单独的文件，但不管怎样，它还是在这里:)
-
 const IS_MOBILE = window.innerWidth <= 640;
 const IS_DESKTOP = window.innerWidth > 800;
 const IS_HEADER = IS_DESKTOP && window.innerHeight < 300;
-// Detect high end devices. This will be a moving target.
 const IS_HIGH_END_DEVICE = (() => {
 	const hwConcurrency = navigator.hardwareConcurrency;
 	if (!hwConcurrency) {
 		return false;
 	}
-	//大屏幕显示的是全尺寸的计算机，现在的计算机通常都有超线程技术。
-	//所以一台四核台式机有8个核心。我们将在那里设置一个更高的最小阈值。
 	const minCount = window.innerWidth <= 1024 ? 4 : 8;
 	return hwConcurrency >= minCount;
 })();
-//防止画布在荒谬的屏幕尺寸上变得过大。
-// 8K -如果需要，可以对此进行限制
 const MAX_WIDTH = 7680;
 const MAX_HEIGHT = 4320;
-const GRAVITY = 0.9; //以像素/秒为单位的加速度
+const GRAVITY = 0.9;
 let simSpeed = 1;
-
 function getDefaultScaleFactor() {
 	if (IS_MOBILE) return 0.9;
 	if (IS_HEADER) return 0.75;
 	return 1;
 }
-
-//考虑比例的宽度/高度值。
-//使用这些来绘制位置
 let stageW, stageH;
-
-//所有质量全局变量都将被覆盖，并通过“configDidUpdate”进行更新。
 let quality = 1;
 let isLowQuality = false;
 let isNormalQuality = false;
 let isHighQuality = true;
-
 const QUALITY_LOW = 1;
 const QUALITY_NORMAL = 2;
 const QUALITY_HIGH = 3;
-
 const SKY_LIGHT_NONE = 0;
 const SKY_LIGHT_DIM = 1;
 const SKY_LIGHT_NORMAL = 2;
-
 const COLOR = {
 	Red: "#ff0043",
 	Green: "#14fc56",
@@ -67,37 +43,23 @@ const COLOR = {
 	Orange :"ff6e18",
 	Cyan: "#07e2f2"
 };
-
-//特殊的不可见颜色(未呈现，因此不在颜色贴图中)
 const INVISIBLE = "_INVISIBLE_";
-
 const PI_2 = Math.PI * 2;
 const PI_HALF = Math.PI * 0.5;
-
-// Stage.disableHighDPI = true;
 const trailsStage = new Stage("trails-canvas");
 const mainStage = new Stage("main-canvas");
 const stages = [trailsStage, mainStage];
-
-//随机文字烟花内容
-const randomWords = ["CZAsTc", "新年快乐"];
+const randomWords = ["CZAsTc"];
 const wordDotsMap = {};
 randomWords.forEach((word) => {
 	wordDotsMap[word] = MyMath.literalLattice(word, 3, "Gabriola,华文琥珀", "90px");
 });
-
-//全屏帮助程序，使用Fscreen作为前缀。
 function fullscreenEnabled() {
 	return fscreen.fullscreenEnabled;
 }
-
-//请注意，全屏状态与存储同步，存储应该是源
-//判断应用程序是否处于全屏模式。
 function isFullscreen() {
 	return !!fscreen.fullscreenElement;
 }
-
-// 尝试切换全屏模式。
 function toggleFullscreen() {
 	if (fullscreenEnabled()) {
 		if (isFullscreen()) {
@@ -107,31 +69,20 @@ function toggleFullscreen() {
 		}
 	}
 }
-
-//将全屏更改与存储同步。事件侦听器是必需的，因为用户可以
-//直接通过浏览器切换全屏模式，我们希望对此做出反应。
-//这个项目的语言由Nianbroken翻译成中文
 fscreen.addEventListener("fullscreenchange", () => {
 	store.setState({ fullscreen: isFullscreen() });
 });
-
-// 简单的状态容器
 const store = {
 	_listeners: new Set(),
 	_dispatch(prevState) {
 		this._listeners.forEach((listener) => listener(this.state, prevState));
 	},
-
-	//当前上下文状态
 	state: {
-		// 将在init()中取消挂起
 		paused: true,
 		soundEnabled: true,
 		menuOpen: false,
 		openHelpTopic: null,
 		fullscreen: isFullscreen(),
-		//请注意，用于<select>的配置值必须是字符串，除非手动将值转换为字符串
-		//在呈现时，并在更改时解析。
 		config: {
 			quality: String(IS_HIGH_END_DEVICE ? QUALITY_HIGH : QUALITY_NORMAL), // will be mirrored to a global variable named `quality` in `configDidUpdate`, for perf.
 			shell: "Random",
@@ -365,7 +316,6 @@ const nodeKeyToHelpKey = {
 	longExposureLabel: "longExposure",
 };
 
-// 程序dom节点列表
 const appNodes = {
 	stageContainer: ".stage-container",
 	canvasContainer: ".canvas-container",
@@ -471,7 +421,6 @@ function handleStateChange(state, prevState) {
 
 store.subscribe(handleStateChange);
 
-//根据dom状态获取配置
 function getConfigFromDOM() {
 	return {
 		quality: appNodes.quality.value,
@@ -520,17 +469,13 @@ appNodes.helpModalOverlay.addEventListener("click", () => {
 	store.setState({ openHelpTopic: null });
 });
 
-//常数导数
 const COLOR_NAMES = Object.keys(COLOR);
 const COLOR_CODES = COLOR_NAMES.map((colorName) => COLOR[colorName]);
-//看不见的星星需要一个标识符，即使它们不会被渲染——物理学仍然适用。
 const COLOR_CODES_W_INVIS = [...COLOR_CODES, INVISIBLE];
-//颜色代码映射到它们在数组中的索引。对于快速确定颜色是否已经在循环中更新非常有用。
 const COLOR_CODE_INDEXES = COLOR_CODES_W_INVIS.reduce((obj, code, i) => {
 	obj[code] = i;
 	return obj;
 }, {});
-// Tuples是用{ r，g，b }元组(仍然只是对象)的值通过颜色代码(十六进制)映射的键。
 const COLOR_TUPLES = {};
 COLOR_CODES.forEach((hex) => {
 	COLOR_TUPLES[hex] = {
@@ -782,9 +727,6 @@ function shellFromConfig(size) {
 	return shellTypes[shellNameSelector()](size);
 }
 
-//获取随机外壳，不包括处理密集型变体
-//注意，只有在配置中选择了“随机”shell时，这才是随机的。
-//还有，这不创建烟花，只返回工厂函数。
 const fastShellBlacklist = ["Falling Leaves", "Floral", "Willow"];
 function randomFastShell() {
 	const isRandom = shellNameSelector() === "Random";
@@ -879,7 +821,6 @@ function getRandomShellPositionV() {
 	return fitShellPositionInBoundsV(Math.random());
 }
 
-// 获取随机的烟花尺寸
 function getRandomShellSize() {
 	const baseSize = shellSizeSelector();
 	const maxVariance = Math.min(2.5, baseSize);
@@ -1594,13 +1535,6 @@ function createWordBurst(wordText, particleFactory, center_x, center_y) {
 	}
 }
 
-// Various star effects.
-// These are designed to be attached to a star's `onDeath` event.
-//各种星形效果。
-//这些被设计用来附加到一个明星的“死亡”事件。
-
-// Crossette breaks star into four same-color pieces which branch in a cross-like shape.
-// Crossette将星形分割成四块相同颜色的星形，这些星形分支成十字形。
 function crossetteEffect(star) {
 	const startAngle = Math.random() * PI_HALF;
 	createParticleArc(startAngle, PI_2, 4, 0.5, (angle) => {
@@ -1608,20 +1542,16 @@ function crossetteEffect(star) {
 	});
 }
 
-// Flower is like a mini shell
-//花就像一个迷你的烟花
 function floralEffect(star) {
 	const count = 12 + 6 * quality;
 	createBurst(count, (angle, speedMult) => {
 		Star.add(star.x, star.y, star.color, angle, speedMult * 2.4, 1000 + Math.random() * 300, star.speedX, star.speedY);
 	});
-	// Queue burst flash render
+
 	BurstFlash.add(star.x, star.y, 46);
 	soundManager.playSound("burstSmall");
 }
 
-// Floral burst with willow stars
-//柳星绽放
 function fallingLeavesEffect(star) {
 	createBurst(7, (angle, speedMult) => {
 		const newStar = Star.add(star.x, star.y, INVISIBLE, angle, speedMult * 2.4, 2400 + Math.random() * 600, star.speedX, star.speedY);
@@ -1638,7 +1568,6 @@ function fallingLeavesEffect(star) {
 }
 
 // Crackle pops into a small cloud of golden sparks.
-//噼里啪啦的一声，迸出一小团金色的火花。
 function crackleEffect(star) {
 	const count = isHighQuality ? 32 : 16;
 	createParticleArc(0, PI_2, count, 1.8, (angle) => {
@@ -1695,13 +1624,13 @@ class Shell {
 	launch(position, launchHeight) {
 		const width = stageW;
 		const height = stageH;
-		//与屏幕两侧保持外壳的距离。
+
 		const hpad = 60;
-		//与屏幕顶部的距离，以保持烟花爆裂。
+
 		const vpad = 50;
-		//最小爆发高度，以舞台高度的百分比表示
+
 		const minHeightPercent = 0.45;
-		//以像素为单位的最小突发高度
+
 		const minHeight = height - height * minHeightPercent;
 
 		const launchX = position * (width - hpad * 2) + hpad;
@@ -1711,8 +1640,7 @@ class Shell {
 		const launchDistance = launchY - burstY;
 		// Using a custom power curve to approximate Vi needed to reach launchDistance under gravity and air drag.
 		// Magic numbers came from testing.
-		//使用自定义功率曲线来逼近在重力和空气阻力下达到发射距离所需的Vi。
-		//神奇的数字来自测试。
+
 		const launchVelocity = Math.pow(launchDistance * 0.04, 0.64);
 
 		const comet = (this.comet = Star.add(
@@ -1750,14 +1678,14 @@ class Shell {
 			comet.transitionTime = Math.pow(Math.random(), 1.5) * 700 + 500;
 		}
 
-		//爆炸回调
+
 		comet.onDeath = (comet) => this.burst(comet.x, comet.y);
 
 		soundManager.playSound("lift");
 	}
 
 	/**
-	 * 在指定位置爆炸
+
 	 * @param {*} x
 	 * @param {*} y
 	 */
@@ -1768,7 +1696,7 @@ class Shell {
 		let color, onDeath, sparkFreq, sparkSpeed, sparkLife;
 		let sparkLifeVariation = 0.25;
 		// Some death effects, like crackle, play a sound, but should only be played once.
-		//有些死亡效果，像爆裂声，播放声音，但应该只播放一次。
+
 		let playedDeathSound = false;
 
 		if (this.crossette)
@@ -1826,7 +1754,7 @@ class Shell {
 		sparkFreq = sparkFreq / quality;
 
 		// Star factory for primary burst, pistils, and streamers.
-		//星形工厂，用于生产初级爆破、雌蕊和流光。
+
 		let firstStar = true;
 		const starFactory = (angle, speedMult) => {
 			// For non-horsetail shells, compute an initial vertical speed to add to star burst.
@@ -1856,8 +1784,7 @@ class Shell {
 				star.strobe = true;
 				// How many milliseconds between switch of strobe state "tick". Note that the strobe pattern
 				// is on:off:off, so this is the "on" duration, while the "off" duration is twice as long.
-				//频闪状态切换之间多少毫秒“滴答”。注意，选通模式
-				//是开:关:关，所以这是“开”的时长，而“关”的时长是两倍。
+
 				star.strobeFreq = Math.random() * 20 + 40;
 				if (this.strobeColor) {
 					star.secondColor = this.strobeColor;
@@ -2024,10 +1951,6 @@ class Shell {
 		// We don't want multiple sounds from pistil or streamer "sub-shells".
 		// This can be detected by the presence of a comet.
 
-		//播放声音，但只针对“原装”shell，即被推出的那个。
-		//我们不希望多个声音来自雌蕊或流光“子壳”。
-		//这可以通过彗星的出现来检测。
-
 		if (this.comet) {
 			// Scale explosion sound based on current shell size and selected (max) shell size.
 			// Shooting selected shell size will always sound the same no matter the selected size,
@@ -2035,13 +1958,6 @@ class Shell {
 			// when a value too small is given though, so instead of basing it on proportions, we just
 			// look at the difference in size and map it to a range known to sound good.
 			// The language of this project was translated into Chinese by Nianbroken
-
-			//根据当前烟花大小和选定的(最大)烟花大小缩放爆炸声音。
-			//拍摄选择的外壳尺寸无论选择的尺寸如何，听起来总是一样的，
-			//但是小一点的炮弹自动发射的时候，声音会小一点。听起来不太好
-			//但是当给定的值太小时，我们不是根据比例，而是
-			//看大小差异，映射到一个已知好听的范围。
-			//这个项目的语言由Nianbroken翻译成中文
 			const maxDiff = 2;
 			const sizeDifferenceFromMaxSize = Math.min(maxDiff, shellSizeSelector() - this.shellSize);
 			const soundScale = (1 - sizeDifferenceFromMaxSize / maxDiff) * 0.3 + 0.7;
@@ -2160,8 +2076,6 @@ const Star = {
 
 	// Public method for cleaning up and returning an instance back to the pool.
 	// Language translation of this project into Chinese by Nianbroken
-	//用于清理实例并将实例返回到池中的公共方法。
-	//由Nianbroken将此项目翻译成中文
 	returnInstance(instance) {
 		// Call onDeath handler if available (and pass it current star instance)
 		instance.onDeath && instance.onDeath(instance);
