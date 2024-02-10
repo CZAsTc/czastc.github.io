@@ -65,6 +65,7 @@ const COLOR = {
 	Ｍagenta: "#f72ff1",
 	Green_Yellow: "#c5ff1a",
 	Orange :"ff6e18",
+	Cyan: "#07e2f2"
 };
 
 //特殊的不可见颜色(未呈现，因此不在颜色贴图中)
