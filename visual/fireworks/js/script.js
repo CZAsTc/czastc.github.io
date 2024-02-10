@@ -62,6 +62,9 @@ const COLOR = {
 	Purple: "#e60aff",
 	Gold: "#ffbf36",
 	White: "#ffffff",
+	Ｍagenta: "#f72ff1",
+	Green_Yellow: "#c5ff1a",
+	Orange :"ff6e18",
 };
 
 //特殊的不可见颜色(未呈现，因此不在颜色贴图中)
