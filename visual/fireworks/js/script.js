@@ -710,33 +710,27 @@ const floralShell = (size = 1) => ({
 	floral: true,
 });
 
-const fallingLeavesShell = (size = 1) => {
-	const color = randomColor();
-	return {
-		shellSize: size,
-		color: INVISIBLE,
-		spreadSize: 300 + size * 120,
-		starDensity: 0.12,
-		starLife: 500 + size * 50,
-		starLifeVariation: 0.5,
-		glitter: "medium",
-		glitterColor: color,
-		fallingLeaves: true,
-	};
-};
+const fallingLeavesShell = (size = 1) => ({
+	shellSize: size,
+	color: INVISIBLE,
+	spreadSize: 300 + size * 120,
+	starDensity: 0.12,
+	starLife: 500 + size * 50,
+	starLifeVariation: 0.5,
+	glitter: "medium",
+	glitterColor: COLOR.Gold,
+	fallingLeaves: true,
+});
 
-const willowShell = (size = 1) => {
-	const color = randomColor();
-	return {
-		shellSize: size,
-		spreadSize: 300 + size * 100,
-		starDensity: 0.6,
-		starLife: 3000 + size * 300,
-		glitter: "willow",
-		glitterColor: color,
-		color: INVISIBLE,
-	};
-};
+const willowShell = (size = 1) => ({
+	shellSize: size,
+	spreadSize: 300 + size * 100,
+	starDensity: 0.6,
+	starLife: 3000 + size * 300,
+	glitter: "willow",
+	glitterColor: COLOR.Gold,
+	color: INVISIBLE,
+});
 
 const crackleShell = (size = 1) => {
 	// favor gold
@@ -748,7 +742,7 @@ const crackleShell = (size = 1) => {
 		starLife: 600 + size * 100,
 		starLifeVariation: 0.32,
 		glitter: "light",
-		glitterColor: color,
+		glitterColor: COLOR.Gold,
 		color,
 		crackle: true,
 		pistil: Math.random() < 0.65,
@@ -766,7 +760,7 @@ const horsetailShell = (size = 1) => {
 		starDensity: 0.9,
 		starLife: 2500 + size * 300,
 		glitter: "medium",
-		glitterColor: color,
+		glitterColor: Math.random() < 0.5 ? whiteOrGold() : color,
 		// Add strobe effect to white horsetails, to make them more interesting
 		strobe: color === COLOR.White,
 	};
@@ -1630,8 +1624,8 @@ function floralEffect(star) {
 function fallingLeavesEffect(star) {
 	createBurst(7, (angle, speedMult) => {
 		const newStar = Star.add(star.x, star.y, INVISIBLE, angle, speedMult * 2.4, 2400 + Math.random() * 600, star.speedX, star.speedY);
-		const 
-		newStar.sparkColor = color;
+
+		newStar.sparkColor = COLOR.Gold;
 		newStar.sparkFreq = 144 / quality;
 		newStar.sparkSpeed = 0.28;
 		newStar.sparkLife = 750;
@@ -1645,13 +1639,12 @@ function fallingLeavesEffect(star) {
 // Crackle pops into a small cloud of golden sparks.
 //噼里啪啦的一声，迸出一小团金色的火花。
 function crackleEffect(star) {
-	const color = randomColor();
 	const count = isHighQuality ? 32 : 16;
 	createParticleArc(0, PI_2, count, 1.8, (angle) => {
 		Spark.add(
 			star.x,
 			star.y,
-			color,
+			COLOR.Gold,
 			angle,
 			// apply near cubic falloff to speed (places more particles towards outside)
 			Math.pow(Math.random(), 0.45) * 2.4,
@@ -1720,7 +1713,6 @@ class Shell {
 		//使用自定义功率曲线来逼近在重力和空气阻力下达到发射距离所需的Vi。
 		//神奇的数字来自测试。
 		const launchVelocity = Math.pow(launchDistance * 0.04, 0.64);
-		const color = randomColor();
 
 		const comet = (this.comet = Star.add(
 			launchX,
@@ -1747,7 +1739,7 @@ class Shell {
 			comet.sparkLife = 500;
 		}
 		if (this.color === INVISIBLE) {
-			comet.sparkColor = color;
+			comet.sparkColor = COLOR.Gold;
 		}
 
 		// Randomly make comet "burn out" a bit early.
@@ -2407,4 +2399,3 @@ if (IS_HEADER) {
 		});
 	}, 0);
 }
-
