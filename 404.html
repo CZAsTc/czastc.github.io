@@ -7,32 +7,23 @@
   <h1 id="countdown">10</h1>
 
   <script>
-    // 获取倒计时元素
     var countdownElement = document.getElementById('countdown');
-
-    // 设置倒计时时间（毫秒）
     var countdownTime = 10000;
+    var startTime = new Date().getTime();
 
-    // 设置倒计时精度（毫秒），即每隔多少时间更新倒计时
-    var countdownInterval = 1;
-
-    // 开始倒计时
     var timer = setInterval(function() {
+      var currentTime = new Date().getTime();
+      var elapsedTime = currentTime - startTime;
+      var remainingTime = Math.max(countdownTime - elapsedTime, 0);
+
       // 更新倒计时元素的显示内容
-      countdownElement.innerHTML = (countdownTime / 1000).toFixed(3);
+      countdownElement.innerHTML = (remainingTime / 1000).toFixed(3);
 
-      // 减去倒计时精度
-      countdownTime -= countdownInterval;
-
-      // 当倒计时结束时
-      if (countdownTime <= 0) {
-        // 清除定时器
+      if (remainingTime <= 0) {
         clearInterval(timer);
-
-        // 跳转到指定页面
         window.location.href = "https://czastc.kesug.com";
       }
-    }, countdownInterval);
+    }, 1); // 使用1毫秒的精度
   </script>
 </body>
 </html>
