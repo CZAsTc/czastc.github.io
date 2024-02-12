@@ -8,7 +8,32 @@
 
   <script>
     let countdownElement = document.getElementById('countdown');
-    let worker = new Worker('countdown.js');
+    let worker = new Worker(URL.createObjectURL(new Blob([`
+      let countdownTime = 10000;
+      let startTime;
+
+      self.onmessage = function(event) {
+        if (event.data === 'start') {
+          startTime = new Date().getTime();
+          startCountdown();
+        }
+      };
+
+      function startCountdown() {
+        let timer = setInterval(function() {
+          let currentTime = new Date().getTime();
+          let elapsedTime = currentTime - startTime;
+          let remainingTime = Math.max(countdownTime - elapsedTime, 0);
+
+          if (remainingTime <= 0) {
+            clearInterval(timer);
+            self.postMessage('done');
+          } else {
+            self.postMessage(remainingTime);
+          }
+        }, 1);
+      }
+    `], { type: 'application/javascript' })));
 
     worker.onmessage = function(event) {
       if (event.data === 'done') {
@@ -19,33 +44,6 @@
     };
 
     worker.postMessage('start');
-  </script>
-
-  <script>
-    let countdownTime = 10000;
-    let startTime;
-
-    self.onmessage = function(event) {
-      if (event.data === 'start') {
-        startTime = new Date().getTime();
-        startCountdown();
-      }
-    };
-
-    function startCountdown() {
-      let timer = setInterval(function() {
-        let currentTime = new Date().getTime();
-        let elapsedTime = currentTime - startTime;
-        let remainingTime = Math.max(countdownTime - elapsedTime, 0);
-
-        if (remainingTime <= 0) {
-          clearInterval(timer);
-          self.postMessage('done');
-        } else {
-          self.postMessage(remainingTime);
-        }
-      }, 1);
-    }
   </script>
 </body>
 </html>
