@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>倒计时</title>
-    <script type="text/javascript">
-        function countdown() {
-            var seconds = 10; // 设置初始值为10秒
-            
-            setInterval(function(){
-                document.getElementById("count").innerHTML = seconds + "秒后返回主页";
-                
-                if (seconds <= 0) {
-                    clearInterval(); // 清除定时器
-                    window.location.href = "https://czastc.kesug.com/";
-                } else {
-                    seconds-=0.0001; // 每次递减1秒
-                }
-            }, 1); // 每隔1秒更新显示内容
-        } 
-        window.onload = countdown; // 页面加载后调用函数开始倒计时
-    </script>
+  <title>倒计时</title>
 </head>
 <body>
-    <h2 id="count"></h2> <!-- 用于显示剩余时间 -->
+  <h1 id="countdown">10</h1>
+
+  <script>
+    // 获取倒计时元素
+    var countdownElement = document.getElementById('countdown');
+
+    // 设置倒计时时间（毫秒）
+    var countdownTime = 10000;
+
+    // 设置倒计时精度（毫秒），即每隔多少时间更新倒计时
+    var countdownInterval = 1;
+
+    // 开始倒计时
+    var timer = setInterval(function() {
+      // 更新倒计时元素的显示内容
+      countdownElement.innerHTML = (countdownTime / 1000).toFixed(3);
+
+      // 减去倒计时精度
+      countdownTime -= countdownInterval;
+
+      // 当倒计时结束时
+      if (countdownTime <= 0) {
+        // 清除定时器
+        clearInterval(timer);
+
+        // 跳转到指定页面
+        window.location.href = "https://czastc.kesug.com";
+      }
+    }, countdownInterval);
+  </script>
 </body>
 </html>
