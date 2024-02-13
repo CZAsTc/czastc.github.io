@@ -352,8 +352,8 @@ nav .menu .menu_icon:hover .icon:after {
   position: absolute;
   top: 50%;
   left: 50%;
-  /*transform: translate(-50%, -50%);
-  animation: content 0.8s cubic-bezier(1, 0.06, 0.25, 1) backwards;*/
+  /*transform: translate(-50%, -50%);*/
+  animation: content 0.8s cubic-bezier(1, 0.06, 0.25, 1) backwards;
 }
 @keyframes content {
   0% {
@@ -523,7 +523,7 @@ nav .menu .menu_icon:hover .icon:after {
   border-radius: 100%;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /*transform: translate(-50%, -50%);*/
   box-shadow: inset 5px 20px 40px rgba(54, 24, 79, 0.25), inset 5px 0px 5px rgba(50, 36, 62, 0.3), inset 5px 5px 20px rgba(50, 36, 62, 0.25), 2px 2px 5px rgba(255, 255, 255, 0.2);
   animation: circle 0.8s cubic-bezier(1, 0.06, 0.25, 1) backwards;
 }
