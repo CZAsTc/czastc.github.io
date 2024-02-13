@@ -188,7 +188,6 @@ body {
 .logo img {
   width: 55%;
   height: 55%;
-  transform: translateY(-1px);
   opacity: 0.8;
 }
 
