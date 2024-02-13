@@ -114,12 +114,12 @@ body{overflow:hidden;}
 .about:hover .social.dribbble .icon:hover {
   background-color: #ea4c89;
 }
-.about:hover .social.linkedin {
+.about:hover .social.github {
   bottom: 0;
   right: calc(100% - 40px);
   transition: all 0.3s 0.25s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
-.about:hover .social.linkedin .icon:hover {
+.about:hover .social.github .icon:hover {
   background-color: #0077b5;
 }
 
