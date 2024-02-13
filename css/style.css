@@ -32,7 +32,7 @@ body{overflow:hidden;}
   width: 40px;
   height: 40px;
   z-index: 9;
-  background-image: url(../images/logo_white.svg);
+  background-image: url(../images/link.svg);
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: 10px 7px;
@@ -58,17 +58,17 @@ body{overflow:hidden;}
   opacity: 0;
   border-radius: 100%;
 }
-.about .social.portfolio {
+.about .social.discord {
   transition: all 0.8s ease;
 }
-.about .social.portfolio .icon {
-  background-image: url(../images/link.svg);
+.about .social.discord .icon {
+  background-image: url(../images/discord.svg);
 }
-.about .social.dribbble {
+.about .social.pinterest {
   transition: all 0.3s ease;
 }
-.about .social.dribbble .icon {
-  background-image: url(../images/dribbble.svg);
+.about .social.pinterest .icon {
+  background-image: url(../images/pinterest.svg);
 }
 .about .social.github {
   transition: all 0.8s ease;
@@ -98,20 +98,20 @@ body{overflow:hidden;}
   background-size: 65%;
   opacity: 1;
 }
-.about:hover .social.portfolio {
+.about:hover .social.discord {
   right: 0;
   bottom: calc(100% - 40px);
   transition: all 0.3s 0s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
-.about:hover .social.portfolio .icon:hover {
+.about:hover .social.discord .icon:hover {
   background-color: #698fb7;
 }
-.about:hover .social.dribbble {
+.about:hover .social.pinterest {
   bottom: 45%;
   right: 45%;
   transition: all 0.3s 0.15s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
-.about:hover .social.dribbble .icon:hover {
+.about:hover .social.pinterest .icon:hover {
   background-color: #ea4c89;
 }
 .about:hover .social.github {
@@ -352,7 +352,7 @@ nav .menu .menu_icon:hover .icon:after {
   position: absolute;
   top: 50%;
   left: 50%;
-  /*transform: translate(-50%, -50%);*/
+  transform: translate(-50%, -50%);
   animation: content 0.8s cubic-bezier(1, 0.06, 0.25, 1) backwards;
 }
 @keyframes content {
@@ -523,7 +523,7 @@ nav .menu .menu_icon:hover .icon:after {
   border-radius: 100%;
   top: 50%;
   left: 50%;
-  /*transform: translate(-50%, -50%);*/
+  transform: translate(-50%, -50%);
   box-shadow: inset 5px 20px 40px rgba(54, 24, 79, 0.25), inset 5px 0px 5px rgba(50, 36, 62, 0.3), inset 5px 5px 20px rgba(50, 36, 62, 0.25), 2px 2px 5px rgba(255, 255, 255, 0.2);
   animation: circle 0.8s cubic-bezier(1, 0.06, 0.25, 1) backwards;
 }
