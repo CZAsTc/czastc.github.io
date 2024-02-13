@@ -70,11 +70,11 @@ body{overflow:hidden;}
 .about .social.dribbble .icon {
   background-image: url(../images/dribbble.svg);
 }
-.about .social.linkedin {
+.about .social.github {
   transition: all 0.8s ease;
 }
-.about .social.linkedin .icon {
-  background-image: url(../images/linkedin.svg);
+.about .social.github .icon {
+  background-image: url(../images/github.svg);
 }
 .about:hover {
   width: 105px;
