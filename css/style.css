@@ -16,7 +16,7 @@ body{overflow:hidden;}
   align-items: flex-end;
   transition: all 0.2s ease;
 }
-.about .bg_links {
+.about .links {
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -76,6 +76,13 @@ body{overflow:hidden;}
 .about .social.github .icon {
   background-image: url(../images/github.svg);
 }
+
+.about .social.bilibili {
+  transition: all 0.8s ease;
+}
+.about .social.bilibili .icon {
+  background-image: url(../images/link.svg);
+}
 .about:hover {
   width: 105px;
   height: 105px;
@@ -120,6 +127,14 @@ body{overflow:hidden;}
   transition: all 0.3s 0.25s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.github .icon:hover {
+  background-color: #0077b5;
+}
+.about:hover .social.bilibili {
+  bottom: 0;
+  right: calc(100% - 40px);
+  transition: all 0.3s 0.25s cubic-bezier(0.64, 0.01, 0.07, 1.65);
+}
+.about:hover .social.bilibili .icon:hover {
   background-color: #0077b5;
 }
 
