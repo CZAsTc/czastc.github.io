@@ -234,56 +234,56 @@ body{overflow:hidden;}
     background-color: #0077b5;
 }
 .about:hover .social.e {
-    bottom: 45%;
-    right: calc(175% - 70px);
+    bottom: calc(300% - 120px);
+    right: 0;
     transition: all 0.3s 0.45s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.e .icon:hover {
     background-color: #0077b5;
 }
 .about:hover .social.f {
-    bottom: 81%;
-    right: 81%;
+    bottom: calc(255% - 120px);
+    right: 45%;
     transition: all 0.3s 0.45s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.f .icon:hover {
     background-color: #0077b5;
 }
 .about:hover .social.g {
-    bottom: calc(175% - 70px);
-    right: 45%;
+    bottom: calc(219% - 120px);
+    right: 81%;
     transition: all 0.3s 0.45s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.g .icon:hover {
     background-color: #0077b5;
 }
 .about:hover .social.h {
-    bottom: calc(200% - 80px);
-    right: 0;
+    bottom: 145.8%;
+    right: 145.8%;
     transition: all 0.3s 0.45s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.h .icon:hover {
     background-color: #0077b5;
 }
 .about:hover .social.i {
-    bottom: 45%;
-    right: calc(175% - 70px);
+    bottom: 81%;
+    right: calc(219% - 120px);
     transition: all 0.3s 0.45s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.i .icon:hover {
     background-color: #0077b5;
 }
 .about:hover .social.j {
-    bottom: 81%;
-    right: 81%;
+    bottom: 45%;
+    right: calc(255% - 120px);
     transition: all 0.3s 0.45s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.j .icon:hover {
     background-color: #0077b5;
 }
 .about:hover .social.k {
-    bottom: calc(175% - 70px);
-    right: 45%;
+    bottom: 0;
+    right: calc(300% - 120px);
     transition: all 0.3s 0.45s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.k .icon:hover {
