@@ -168,8 +168,8 @@ body{overflow:hidden;}
     background-color: #0077b5;
 }
 .about:hover .social.b {
-    bottom: 90%;
-    right: 90%;
+    bottom: 81%;
+    right: 81%;
     transition: all 0.3s 0.45s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.b .icon:hover {
