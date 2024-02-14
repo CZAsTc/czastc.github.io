@@ -104,34 +104,46 @@ body{overflow:hidden;}
   background-size: 65%;
   opacity: 1;
 }
-.about:hover .social.discord {
-  right: 0;
-  bottom: calc(100% - 40px);
+.about:hover .social {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.3s 0s cubic-bezier(0.64, 0.01, 0.07, 1.65);
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.about:hover .social.discord {
+  right: calc(100% - 40px);
+  bottom: calc(100% - 40px);
+}
+
+.about:hover .social.pinterest {
+  right: calc(100% - 80px);
+  bottom: calc(100% - 80px);
+}
+
+.about:hover .social.github {
+  right: calc(100% - 120px);
+  bottom: calc(100% - 120px);
+}
+
+.about:hover .social.bilibili {
+  right: calc(100% - 160px);
+  bottom: calc(100% - 160px);
 }
 .about:hover .social.discord .icon:hover {
   background-color: #698fb7;
 }
-.about:hover .social.pinterest {
-  bottom: 45%;
-  right: 45%;
-  transition: all 0.3s 0.15s cubic-bezier(0.64, 0.01, 0.07, 1.65);
-}
 .about:hover .social.pinterest .icon:hover {
   background-color: #ea4c89;
 }
-.about:hover .social.github {
-  bottom: 0;
-  right: calc(100% - 40px);
-  transition: all 0.3s 0.25s cubic-bezier(0.64, 0.01, 0.07, 1.65);
-}
 .about:hover .social.github .icon:hover {
   background-color: #0077b5;
-}
-.about:hover .social.bilibili {
-  bottom: 0;
-  right: calc(100% - 40px);
-  transition: all 0.3s 0.25s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.bilibili .icon:hover {
   background-color: #0077b5;
