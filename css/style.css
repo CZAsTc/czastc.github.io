@@ -116,6 +116,7 @@ body{overflow:hidden;}
   left: 0;
   transform: translate(-50%, -50%) rotate(45deg);
 }
+
 .about:hover .social.discord {
   right: calc(100% - 40px);
   bottom: calc(100% - 40px);
