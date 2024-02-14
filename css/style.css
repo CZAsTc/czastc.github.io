@@ -242,7 +242,7 @@ body{overflow:hidden;}
     background-color: #0077b5;
 }
 .about:hover .social.f {
-    bottom: calc(255% - 120px);
+    bottom: calc(275% - 110px);
     right: 45%;
     transition: all 0.3s 0.45s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
@@ -258,8 +258,8 @@ body{overflow:hidden;}
     background-color: #0077b5;
 }
 .about:hover .social.h {
-    bottom: 145.8%;
-    right: 145.8%;
+    bottom: 121.5%;
+    right: 121.5%;
     transition: all 0.3s 0.45s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.h .icon:hover {
@@ -274,7 +274,7 @@ body{overflow:hidden;}
     background-color: #0077b5;
 }
 .about:hover .social.j {
-    bottom: 45%;
+    bottom: calc(275% - 110px);
     right: calc(255% - 120px);
     transition: all 0.3s 0.45s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
