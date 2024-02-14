@@ -114,9 +114,8 @@ body{overflow:hidden;}
   transition: all 0.3s 0s cubic-bezier(0.64, 0.01, 0.07, 1.65);
   top: 0;
   left: 0;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
-
 .about:hover .social.discord {
   right: calc(100% - 40px);
   bottom: calc(100% - 40px);
