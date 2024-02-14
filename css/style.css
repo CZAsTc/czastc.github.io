@@ -64,7 +64,7 @@ body{overflow:hidden;}
   background-image: url(../images/discord.svg);
 }
 .about .social.pinterest {
-  transition: all 0.8s ease;
+  transition: all 0.3s ease;
 }
 .about .social.pinterest .icon {
   background-image: url(../images/pinterest.svg);
@@ -75,13 +75,6 @@ body{overflow:hidden;}
 .about .social.github .icon {
   background-image: url(../images/github.svg);
 }
-
-.about .social.bilibili {
-  transition: all 0.8s ease;
-}
-.about .social.bilibili .icon {
-  background-image: url(../images/link.svg);
-}
 .about:hover {
   width: 105px;
   height: 105px;
@@ -90,19 +83,6 @@ body{overflow:hidden;}
 .about:hover .logo {
   opacity: 1;
   transition: all 0.6s ease;
-}
-.about:hover .social {
-  opacity: 1;
-}
-.about:hover .social .icon {
-  opacity: 0.9;
-}
-.about:hover .social:hover {
-  background-size: 28px;
-}
-.about:hover .social:hover .icon {
-  background-size: 65%;
-  opacity: 1;
 }
 .about:hover .social {
   position: absolute;
@@ -122,33 +102,39 @@ body{overflow:hidden;}
   bottom: calc(100% - 40px);
 }
 
-.about:hover .social.pinterest {
-  right: calc(100% - 80px);
-  bottom: calc(100% - 80px);
-}
-
-.about:hover .social.github {
-  right: calc(100% - 120px);
-  bottom: calc(100% - 120px);
-}
-
-.about:hover .social.bilibili {
-  right: calc(100% - 160px);
-  bottom: calc(100% - 160px);
-}
 .about:hover .social.discord .icon:hover {
   background-color: #698fb7;
 }
+
+.about:hover .social.pinterest {
+  bottom: 45%;
+  right: 45%;
+  transition: all 0.3s 0.15s cubic-bezier(0.64, 0.01, 0.07, 1.65);
+}
+
 .about:hover .social.pinterest .icon:hover {
   background-color: #ea4c89;
 }
+
+.about:hover .social.github {
+  bottom: 0;
+  right: calc(100% - 80px);
+  transition: all 0.3s 0.25s cubic-bezier(0.64, 0.01, 0.07, 1.65);
+}
+
 .about:hover .social.github .icon:hover {
   background-color: #0077b5;
 }
+
+.about:hover .social.bilibili {
+  bottom: 0;
+  right: calc(100% - 120px);
+  transition: all 0.3s 0.25s cubic-bezier(0.64, 0.01, 0.07, 1.65);
+}
+
 .about:hover .social.bilibili .icon:hover {
   background-color: #0077b5;
 }
-
 h1,
 h2,
 h3,
