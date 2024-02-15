@@ -658,6 +658,7 @@ nav .menu .menu_icon:hover .icon:after {
     z-index: 2;
     animation: anime404 0.6s cubic-bezier(0.3, 0.8, 1, 1.05) both;
     animation-delay: 1.2s;
+    text-align: center;
 }
 @media screen and (max-width: 799px) {
     .wrapper .container .p404 {
