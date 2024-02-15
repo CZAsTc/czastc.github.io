@@ -499,9 +499,8 @@ nav .menu .menu_icon:hover .icon:after {
 .wrapper .container .p404 {
     width: 60%;
     height: 60%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    top: 20% !important;
+    left: 20% !important;
     min-width: 400px;
     min-height: 400px;
 }
@@ -652,7 +651,7 @@ nav .menu .menu_icon:hover .icon:after {
     font-weight: 700;
     letter-spacing: 4px;
     color: white;
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
     position: absolute;
