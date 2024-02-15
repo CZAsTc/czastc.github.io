@@ -487,11 +487,10 @@ nav .menu .menu_icon:hover .icon:after {
     position: relative;
 }
 .wrapper .container .scene {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    vertical-align: middle;
 }
 .wrapper .container .one,
 .wrapper .container .two,
@@ -500,7 +499,7 @@ nav .menu .menu_icon:hover .icon:after {
 .wrapper .container .p404 {
     width: 60%;
     height: 60%;
-    top: 20% !important;
+    top: 10% !important;
     left: 20% !important;
     min-width: 400px;
     min-height: 400px;
