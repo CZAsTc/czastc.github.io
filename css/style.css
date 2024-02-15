@@ -499,8 +499,9 @@ nav .menu .menu_icon:hover .icon:after {
 .wrapper .container .p404 {
     width: 60%;
     height: 60%;
-    top: 20% !important;
-    left: 20% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 400px;
     min-height: 400px;
 }
@@ -651,14 +652,13 @@ nav .menu .menu_icon:hover .icon:after {
     font-weight: 700;
     letter-spacing: 4px;
     color: white;
-    display: flex !important;
+    display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     z-index: 2;
     animation: anime404 0.6s cubic-bezier(0.3, 0.8, 1, 1.05) both;
     animation-delay: 1.2s;
-    text-align: center;
 }
 @media screen and (max-width: 799px) {
     .wrapper .container .p404 {
