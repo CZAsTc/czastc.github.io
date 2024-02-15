@@ -487,11 +487,11 @@ nav .menu .menu_icon:hover .icon:after {
     position: relative;
 }
 .wrapper .container .scene {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    vertical-align: middle;
-    transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
 }
 .wrapper .container .one,
 .wrapper .container .two,
