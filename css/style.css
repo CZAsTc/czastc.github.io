@@ -491,8 +491,7 @@ nav .menu .menu_icon:hover .icon:after {
     width: 100vw;
     height: 100vh;
     vertical-align: middle;
-    left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
 }
 .wrapper .container .one,
 .wrapper .container .two,
