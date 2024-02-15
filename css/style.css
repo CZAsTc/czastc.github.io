@@ -584,7 +584,7 @@ nav .menu .menu_icon:hover .icon:after {
     min-width: 400px;
     min-height: 500px;
     position: absolute;
-    margin: 40px 0;
+    margin: 80px 0;
     animation: text 0.6s 1.8s ease backwards;
 }
 @keyframes text {
