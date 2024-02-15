@@ -258,8 +258,8 @@ body{overflow:hidden;}
     background-color: #0077b5;
 }
 .about:hover .social.h {
-    bottom: calc(175% - 67.5px);
-    right: calc(175% - 67.5px);
+    bottom: calc(175% - 65px);
+    right: calc(175% - 65px);
     transition: all 0.3s 1.65s cubic-bezier(0.64, 0.01, 0.07, 1.65);
 }
 .about:hover .social.h .icon:hover {
