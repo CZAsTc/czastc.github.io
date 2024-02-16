@@ -578,7 +578,7 @@ nav .menu .menu_icon:hover .icon:after {
 }
 .wrapper .container .p404 {
     position: absolute;
-    transform: translateY(-10px);
+    transform: translateY(-20px);
 }
 .wrapper .container .text {
     width: 60%;
@@ -588,7 +588,7 @@ nav .menu .menu_icon:hover .icon:after {
     position: absolute;
     margin: 40px 0;
     animation: text 0.6s 1.8s ease backwards;
-    transform: translateY(10px);
+    transform: translateY(50px);
 }
 @keyframes text {
     0% {
