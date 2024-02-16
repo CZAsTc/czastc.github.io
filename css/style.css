@@ -482,7 +482,6 @@ nav .menu .menu_icon:hover .icon:after {
     justify-content: center;
     align-items: center;
     position: relative;
-    transform: translateY(-100px);
 }
 .wrapper .container .scene {
     position: absolute;
