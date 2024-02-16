@@ -576,14 +576,13 @@ nav .menu .menu_icon:hover .icon:after {
         top: 20% !important;
         left: 20% !important;
     }
-}
-.wrapper .container .text {
+}.wrapper .container .text {
     width: 60%;
     height: 40%;
     min-width: 400px;
     min-height: 500px;
     position: absolute;
-    margin: 80px 0;
+    margin: 40px 0;
     animation: text 0.6s 1.8s ease backwards;
 }
 @keyframes text {
