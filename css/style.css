@@ -578,14 +578,10 @@ nav .menu .menu_icon:hover .icon:after {
         left: 20% !important;
     }
 }
-.wrapper .container .p404 {
-    top: 40%;
-    position: absolute;
-}
 .wrapper .container .text {
     width: 60%;
     height: 40%;
-    bottom: 0%;
+    top: 60%;
     min-width: 400px;
     min-height: 500px;
     position: absolute;
