@@ -483,13 +483,13 @@ nav .menu .menu_icon:hover .icon:after {
     justify-content: center;
     align-items: center;
     position: relative;
+    transform: translateY(-20px);
 }
 .wrapper .container .scene {
     position: absolute;
     width: 100vw;
     height: 100vh;
     vertical-align: middle;
-    transform: translateY(-20px);
 }
 .wrapper .container .one,
 .wrapper .container .two,
