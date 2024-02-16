@@ -473,7 +473,6 @@ nav .menu .menu_icon:hover .icon:after {
 .wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    top: 60%;
     height: 100vh;
     overflow-x: hidden;
 }
@@ -576,7 +575,12 @@ nav .menu .menu_icon:hover .icon:after {
         top: 20% !important;
         left: 20% !important;
     }
-}.wrapper .container .text {
+}
+.wrapper .container .p404 {
+    position: absolute;
+    transform: translateY(-10px);
+}
+.wrapper .container .text {
     width: 60%;
     height: 40%;
     min-width: 400px;
@@ -584,6 +588,7 @@ nav .menu .menu_icon:hover .icon:after {
     position: absolute;
     margin: 40px 0;
     animation: text 0.6s 1.8s ease backwards;
+    transform: translateY(10px);
 }
 @keyframes text {
     0% {
