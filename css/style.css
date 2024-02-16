@@ -511,11 +511,8 @@ nav .menu .menu_icon:hover .icon:after {
 .wrapper .container .p404 .content {
     width: 600px;
     height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     animation: content 0.8s cubic-bezier(1, 0.06, 0.25, 1) backwards;
@@ -584,7 +581,7 @@ nav .menu .menu_icon:hover .icon:after {
     min-width: 400px;
     min-height: 500px;
     position: absolute;
-    margin: 80px 0;
+    margin: 40px 0;
     animation: text 0.6s 1.8s ease backwards;
 }
 @keyframes text {
