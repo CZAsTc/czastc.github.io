@@ -595,7 +595,7 @@ nav .menu .menu_icon:hover .icon:after {
     .wrapper .container .text {
         min-height: 400px;
         height: 80%;
-    	transform: translateY(0px) !important;
+    	transform: translateY(-20px) !important;
     }
 }
 .wrapper .container .text article {
