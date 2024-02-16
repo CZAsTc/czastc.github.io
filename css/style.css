@@ -512,7 +512,10 @@ nav .menu .menu_icon:hover .icon:after {
     width: 600px;
     height: 600px;
     position: absolute;
-    top: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     animation: content 0.8s cubic-bezier(1, 0.06, 0.25, 1) backwards;
@@ -578,6 +581,7 @@ nav .menu .menu_icon:hover .icon:after {
 .wrapper .container .text {
     width: 60%;
     height: 40%;
+    bottom: 60px;
     min-width: 400px;
     min-height: 500px;
     position: absolute;
