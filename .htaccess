@@ -1,13 +1,4 @@
 RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
-ErrorDocument 400 https://czastc.kesug.com/400
-ErrorDocument 401 https://czastc.kesug.com/401
-ErrorDocument 403 https://czastc.kesug.com/403
-ErrorDocument 404 https://czastc.kesug.com/404
-ErrorDocument 500 https://czastc.kesug.com/500
-ErrorDocument 502 https://czastc.kesug.com/502
-ErrorDocument 503 https://czastc.kesug.com/503
