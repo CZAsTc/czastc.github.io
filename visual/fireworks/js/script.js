@@ -934,10 +934,10 @@ function handlePointerMove(event) {
 	}
 }
 function handleKeydown(event) {
-	if (event.keyCode === 80) {
+	if (event.keyCode === 32) {
 		togglePause();
 	}
-	else if (event.keyCode === 79) {
+	else if (event.keyCode === 83) {
 		toggleMenu();
 	}
 	else if (event.keyCode === 27) {
