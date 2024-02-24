@@ -1,6 +1,6 @@
 RewriteEngine On
-RewriteRule ^(.*)$ https://www.czastc.pages.dev [NC]
-RewriteCond %{HTTP_HOST} ^czastc.pages.dev/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^www.czastc.pages.dev [NC]
+RewriteRule ^(.*)$ https://czastc.pages.dev/$1 [L,R=301]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
