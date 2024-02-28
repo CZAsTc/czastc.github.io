@@ -1,4 +1,4 @@
-fetch(`https://ipinfo.io/json?token=${process.env.IPINFO_TOKEN}`)
+fetch(`https://ipinfo.io/json?token=b300d35c14a289`)
     .then(response => response.json())
     .then(data => {
         const country = data.country;
