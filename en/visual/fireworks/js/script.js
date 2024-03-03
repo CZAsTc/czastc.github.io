@@ -63,10 +63,10 @@ const PI_HALF = Math.PI * 0.5;
 const trailsStage = new Stage("trails-canvas");
 const mainStage = new Stage("main-canvas");
 const stages = [trailsStage, mainStage];
-const randomWords = ["CZAsTc", "Hello, World", "新年快乐", "生日快乐", "烟花模拟器"];
+const randomWords = ["CZAsTc", "Hello, World", "Happy new year!", "Happy birthday!", "Fireworks Simulator"];
 const wordDotsMap = {};
 randomWords.forEach((word) => {
-	wordDotsMap[word] = MyMath.literalLattice(word, 3, "Gabriola,华文琥珀", "90px");
+	wordDotsMap[word] = MyMath.literalLattice(word, 3, "Gabriola", "90px");
 });
 function fullscreenEnabled() {
 	return fscreen.fullscreenEnabled;
@@ -142,9 +142,8 @@ const store = {
 					config.scaleFactor = data.scaleFactor;
 					break;
 				default:
-					throw new Error("version switch should be exhaustive");
+					throw new Error();
 			}
-			console.log(`Loaded config (schema version ${schemaVersion})`);
 		}
 		else if (localStorage.getItem("schemaVersion") === "1") {
 			let size;
@@ -152,8 +151,6 @@ const store = {
 				const sizeRaw = localStorage.getItem("configSize");
 				size = typeof sizeRaw === "string" && JSON.parse(sizeRaw);
 			} catch (e) {
-				console.log("Recovered from error parsing saved config:");
-				console.error(e);
 				return;
 			}
 			const sizeInt = parseInt(size, 10);
@@ -236,49 +233,49 @@ const skyLightingSelector = () => +store.state.config.skyLighting;
 const scaleFactorSelector = () => store.state.config.scaleFactor;
 const helpContent = {
 	shellType: {
-		header: "烟花类型",
-		body: "你要放的烟花的类型，选择“随机（Random）”可以获得非常好的体验！",
+		header: 'Fireworks Type',
+		body: 'The type of firework that will be launched. Select "Random" for a nice assortment!'
 	},
 	shellSize: {
-		header: "烟花大小",
-		body: "烟花越大绽放范围就越大，但是烟花越大，设备所需的性能也会增多，大的烟花可能导致你的设备卡顿。",
+		header: 'Fireworks Size',
+		body: 'The size of the fireworks. Modeled after real firework shell sizes, larger shells have bigger bursts with more stars, and sometimes more complex effects. However, larger shells also require more processing power and may cause lag.'
 	},
 	quality: {
-		header: "画质",
-		body: "如果动画运行不流畅，你可以试试降低画质。画质越高，烟花绽放后的火花数量就越多，但高画质可能导致你的设备卡顿。",
+		header: 'Quality',
+		body: 'Overall graphics quality. If the animation is not running smoothly, try lowering the quality. High quality greatly increases the amount of sparks rendered and may cause lag.'
 	},
 	skyLighting: {
-		header: "照亮天空",
-		body: "烟花爆炸时，背景会被照亮。如果你的屏幕看起来太亮了，可以把它改成“暗”或者“不”。",
+		header: 'Sky Lighting',
+		body: 'Illuminates the background as fireworks explode. If the background looks too bright on your screen, try setting it to "Dim" or "None".'
 	},
 	scaleFactor: {
-		header: "缩放",
-		body: "使你与烟花离得更近或更远。对于较大的烟花，你可以选择更小的缩放值，尤其是在手机或平板电脑上。",
+		header: 'Scale',
+		body: 'Allows scaling the size of all fireworks, essentially moving you closer or farther away. For larger shell sizes, it can be convenient to decrease the scale a bit, especially on phones or tablets.'
 	},
 	wordShell: {
-		header: "文字烟花",
-		body: "开启后，会出现烟花形状的文字。例如：CZAsTc、新年快乐、生日快乐等等",
+		header: 'Text Fireworks',
+		body: 'Text in the shape of fireworks. Such as "CZAsTc", "Happy birthday!", "Fireworks Simulator", etc.',
 	},
 	autoLaunch: {
-		header: "自动放烟花",
-		body: "开启后你就可以坐在你的设备屏幕前面欣赏烟花了，你也可以关闭它，但关闭后你就只能通过点击屏幕的方式来放烟花。",
+		header: 'Auto Fire',
+		body: 'Launches sequences of fireworks automatically. Sit back and enjoy the show, or disable to have full control.'
 	},
 	finaleMode: {
-		header: "同时放更多的烟花",
-		body: "可以在同一时间自动放出更多的烟花（但需要开启先开启“自动放烟花”）。",
+		header: 'Finale Mode',
+		body: 'Launches intense bursts of fireworks. May cause lag. Requires "Auto Fire" to be enabled.'
 	},
 	hideControls: {
-		header: "隐藏控制按钮",
-		body: "隐藏屏幕顶部的按钮。如果你要截图，或者需要一个无缝的体验，你就可以将按钮隐藏，隐藏按钮后你仍然可以在右上角打开设置。",
+		header: 'Hide Controls',
+		body: 'Hides the translucent controls along the top of the screen. Useful for screenshots, or just a more seamless experience. While hidden, you can still tap the top-right corner to re-open this menu.'
 	},
 	fullscreen: {
-		header: "全屏",
-		body: "切换至全屏模式",
+		header: 'Fullscreen',
+		body: 'Toggles fullscreen mode.'
 	},
 	longExposure: {
-		header: "保留烟花的火花",
-		body: "可以保留烟花留下的火花",
-	},
+		header: 'Open Shutter',
+		body: 'Experimental effect that preserves long streaks of light, similar to leaving a camera shutter open.'
+	}
 };
 const nodeKeyToHelpKey = {
 	shellTypeLabel: "shellType",
@@ -678,14 +675,14 @@ function init() {
 	['3"', '4"', '6"', '8"', '12"', '16"'].forEach((opt, i) => (options += `<option value="${i}">${opt}</option>`));
 	appNodes.shellSize.innerHTML = options;
 	setOptionsForSelect(appNodes.quality, [
-		{ label: "低", value: QUALITY_LOW },
-		{ label: "正常", value: QUALITY_NORMAL },
-		{ label: "高", value: QUALITY_HIGH },
+		{ label: "Low", value: QUALITY_LOW },
+		{ label: "Normal", value: QUALITY_NORMAL },
+		{ label: "High", value: QUALITY_HIGH },
 	]);
 	setOptionsForSelect(appNodes.skyLighting, [
-		{ label: "关闭", value: SKY_LIGHT_NONE },
-		{ label: "暗", value: SKY_LIGHT_DIM },
-		{ label: "正常", value: SKY_LIGHT_NORMAL },
+		{ label: "None", value: SKY_LIGHT_NONE },
+		{ label: "Dim", value: SKY_LIGHT_DIM },
+		{ label: "Normal", value: SKY_LIGHT_NORMAL },
 	]);
 	setOptionsForSelect(
 		appNodes.scaleFactor,
@@ -1192,7 +1189,7 @@ function createParticleArc(start, arcLength, count, randomness, particleFactory)
 function getWordDots(word) {
 	if (!word) return null;
 	var fontSize = Math.floor(Math.random() * 70 + 60);
-	var res = MyMath.literalLattice(word, 3, "Gabriola,华文琥珀", fontSize + "px");
+	var res = MyMath.literalLattice(word, 3, "Gabriola", fontSize + "px");
 	return res;
 }
 function createBurst(count, particleFactory, startAngle = 0, arcLength = PI_2) {
@@ -1494,7 +1491,7 @@ class Shell {
 				createBurst(this.starCount / 2, starFactory);
 			}
 		} else {
-			throw new Error("无效的烟花颜色。应为字符串或字符串数组，但得到:" + this.color);
+			throw new Error();
 		}
 		if (!this.disableWordd && store.state.config.wordShell) {
 			if (Math.random() < 0.1) {
@@ -1632,7 +1629,7 @@ const Spark = {
 	},
 };
 const soundManager = {
-	baseURL: "./audio/",
+	baseURL: "/assets/audio/",
 	ctx: new (window.AudioContext || window.webkitAudioContext)(),
 	sources: {
 		lift: {
@@ -1672,7 +1669,7 @@ const soundManager = {
 			if (response.status >= 200 && response.status < 300) {
 				return response;
 			}
-			const customError = new Error(response.statusText);
+			const customError = new Error();
 			customError.response = response;
 			throw customError;
 		}
@@ -1725,7 +1722,7 @@ const soundManager = {
 		}
 		const source = this.sources[type];
 		if (!source) {
-			throw new Error(`Sound of type "${type}" doesn't exist.`);
+			throw new Error();
 		}
 		const initialVolume = source.volume;
 		const initialPlaybackRate = MyMath.random(source.playbackRateMin, source.playbackRateMax);
@@ -1748,11 +1745,10 @@ function setLoadingStatus(status) {
 if (IS_HEADER) {
 	init();
 } else {
-	setLoadingStatus("正在点燃导火线");
+	setLoadingStatus("The fuse is being lit");
 	setTimeout(() => {
 		var promises = [soundManager.preload()];
 		Promise.all(promises).then(init, (reason) => {
-			console.log("资源文件加载失败");
 			init();
 			return Promise.reject(reason);
 		});
