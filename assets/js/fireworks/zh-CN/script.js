@@ -1632,7 +1632,7 @@ const Spark = {
 	},
 };
 const soundManager = {
-	baseURL: "./audio/",
+	baseURL: "/assets/audio/",
 	ctx: new (window.AudioContext || window.webkitAudioContext)(),
 	sources: {
 		lift: {
